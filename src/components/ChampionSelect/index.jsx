@@ -2,16 +2,12 @@ import "./style.css";
 
 import { Champion } from "../Champion";
 
-export function ChampionSelect() {
-  function handleSelection() {
-    console.log("oi");
-  }
-
+export function ChampionSelect({ champions, handleChampionSelection }) {
   return (
     <div className="champion-select">
-      <Champion onClick={handleSelection} />
-      <Champion onClick={handleSelection} />
-      <Champion onClick={handleSelection} />
+      {champions.map((champion) => (
+        <Champion key={champion.key} onClick={() => handleChampionSelection(champion)} champion={champion} />
+      ))}
     </div>
   );
 }

@@ -1,9 +1,9 @@
 import "./style.css";
 
-export function GameStats() {
+export function GameStats({ score }) {
   return (
     <div className="game-stats">
-      <p>Score: 0</p>
+      <p>Score: {score}</p>
       <p>Best score: 0</p>
     </div>
   );
