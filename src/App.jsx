@@ -7,6 +7,7 @@ import { useGameController } from "./hooks/useGameController";
 function App() {
   const {
     isSelectingLevel,
+    setIsSelectingLevel,
     levels,
     handleLevelSelection,
     champions,
@@ -14,6 +15,10 @@ function App() {
     score,
     flippedAll,
   } = useGameController();
+
+  function backHome() {
+    setIsSelectingLevel(true);
+  }
 
   return (
     <div>
@@ -28,6 +33,7 @@ function App() {
           champions={champions}
           handleChampionSelection={handleChampionSelection}
           flippedAll={flippedAll}
+          backHome={backHome}
         />
       )}
     </div>

@@ -6,17 +6,21 @@ export function ChampionSelect({
   champions,
   handleChampionSelection,
   flippedAll,
+  backHome
 }) {
   return (
-    <div className="champion-select">
-      {champions.map((champion) => (
-        <Champion
-          key={champion.id}
-          champion={champion}
-          flipped={flippedAll} // todos viram juntos
-          onClick={handleChampionSelection}
-        />
-      ))}
+    <div>
+      <div className="champion-select">
+        {champions.map((champion) => (
+          <Champion
+            key={champion.id}
+            champion={champion}
+            flipped={flippedAll} // todos viram juntos
+            onClick={handleChampionSelection}
+          />
+        ))}
+      </div>
+      <button className="back-home" onClick={backHome}>Back to Home</button>
     </div>
   );
 }

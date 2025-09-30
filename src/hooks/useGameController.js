@@ -80,6 +80,7 @@ export function useGameController() {
     handleLevelSelection,
     isSelectingLevel,
     champions,
+    setIsSelectingLevel,
     handleChampionSelection,
     score,
     shufflingCards,
