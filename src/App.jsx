@@ -12,6 +12,7 @@ function App() {
     champions,
     handleChampionSelection,
     score,
+    flippedAll,
   } = useGameController();
 
   return (
@@ -26,6 +27,7 @@ function App() {
         <ChampionSelect
           champions={champions}
           handleChampionSelection={handleChampionSelection}
+          flippedAll={flippedAll}
         />
       )}
     </div>

@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import riot from "../services/riot";
 
 const levels = [
@@ -15,6 +14,8 @@ export function useGameController() {
   const [previousChampions, setPreviousChampions] = useState([]);
   const [isSelectingLevel, setIsSelectingLevel] = useState(true);
   const [score, setScore] = useState(0);
+  const [shufflingCards, setShufflingCards] = useState(false);
+  const [flippedAll, setFlippedAll] = useState(false);
 
   function getRandomChampion() {
     const index = Math.floor(Math.random() * (level.champions * 2 - 1) + 1);
@@ -32,31 +33,33 @@ export function useGameController() {
     }
 
     const index = getRandomIndex();
+    const newCards = champions.map((champion, i) =>
+      i === index ? newChampion : champion
+    );
 
-    const newCards = champions.map((champion, i) => {
-      if (i === index) {
-        return newChampion;
-      } else {
-        return champion;
-      }
-    });
     setChampions(newCards);
   }
 
   function handleChampionSelection(champion) {
-    if (previousChampions == champions) {
-      setPreviousChampions(champions);
-      shuffleCards();
-      return;
-    }
+    setShufflingCards(true);
 
-    if (previousChampions.includes(champion)) {
-      setScore(0);
-    } else {
-      setScore(score + 1);
-    }
-    setPreviousChampions(champions);
-    shuffleCards();
+    setFlippedAll(true);
+
+    setTimeout(() => {
+      shuffleCards();
+
+      if (previousChampions.includes(champion)) {
+        setScore(0);
+      } else {
+        setScore(score + 1);
+      }
+      setPreviousChampions(champions);
+
+      setTimeout(() => {
+        setFlippedAll(false);
+        setShufflingCards(false);
+      }, 600);
+    }, 600);
   }
 
   function handleLevelSelection(level) {
@@ -79,5 +82,7 @@ export function useGameController() {
     champions,
     handleChampionSelection,
     score,
+    shufflingCards,
+    flippedAll,
   };
 }
