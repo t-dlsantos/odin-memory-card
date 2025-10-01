@@ -20,7 +20,7 @@
 
 html {
   height: 100vh;
-  background: url("./background.jpg") no-repeat bottom;
+  background: url("/background.jpg") no-repeat bottom;
   background-color: black;
   background-size: cover;
   background-color: rgba(0, 0, 0, 0.7);
